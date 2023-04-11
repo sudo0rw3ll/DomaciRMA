@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/calendarFrag"
+        android:icon="@drawable/ic_baseline_calendar_month_24"
+        android:title="@string/calendarNav"
+        />
+
+    <item
+        android:id="@+id/dailyTasksFrag"
+        android:icon="@drawable/ic_baseline_today_24"
+        android:title="@string/dailyNav"
+        />
+
+    <item
+        android:id="@+id/userProfileFrag"
+        android:icon="@drawable/ic_baseline_person_24_white"
+        android:title="@string/userNav"
+        />
+</menu>

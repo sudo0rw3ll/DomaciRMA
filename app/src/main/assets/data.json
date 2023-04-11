@@ -1,0 +1,44 @@
+[
+  {
+    "local": "2023-03-27",
+    "tasks" : [
+      {
+        "title": "Update Readme's on my repositories",
+        "description": "Make readme's look better because of the HR.",
+        "date": "2023-03-27",
+        "hour": 23,
+        "minute": 10,
+        "prirority": "HIGH"
+      },
+      {
+        "title": "Fix the null ptr exception bug",
+        "description": "Fix the null pointer exception bug I get on the backend.",
+        "date": "2023-03-27",
+        "hour": 1,
+        "minute": 15,
+        "prirority": "MID"
+      },
+      {
+        "title": "Take a good nap",
+        "description": "I should remind myself that I should get a good nap in order to wake up less tired but that's not going to happen",
+        "date": "2023-03-27",
+        "hour": 3,
+        "minute": 30,
+        "prirority": "MINOR"
+      }
+    ]
+  },
+  {
+    "date": "2023-04-01",
+    "tasks": [
+      {
+        "title": "Send cringy jokes to everybody",
+        "description": "Just don't send any jokes",
+        "date": "2023-04-01",
+        "hour": 14,
+        "minute": 10,
+        "prirority": "MINOR"
+      }
+    ]
+  }
+]
