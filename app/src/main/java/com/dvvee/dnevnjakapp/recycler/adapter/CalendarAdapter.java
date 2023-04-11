@@ -1,6 +1,7 @@
 package com.dvvee.dnevnjakapp.recycler.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dvvee.dnevnjakapp.R;
 import com.dvvee.dnevnjakapp.model.CalendarDay;
+import com.dvvee.dnevnjakapp.model.Priority;
 import com.dvvee.dnevnjakapp.model.Task;
 
+import java.util.Calendar;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class CalendarAdapter extends ListAdapter<CalendarDay, CalendarAdapter.ViewHolder> {
@@ -42,7 +46,48 @@ public class CalendarAdapter extends ListAdapter<CalendarDay, CalendarAdapter.Vi
         CalendarDay calendarDay = getItem(position);
         holder.bind(calendarDay);
 
+        Priority priority = getPriorityForCard(calendarDay);
+
+        if(priority == Priority.HIGH)
+            holder.itemView.setBackgroundColor(Color.RED);
+        if(priority == Priority.MID)
+            holder.itemView.setBackgroundColor(Color.YELLOW);
+        if(priority == Priority.MINOR)
+            holder.itemView.setBackgroundColor(Color.GREEN);
+
         System.out.println("Pos -> " + position + " task " + calendarDay.getDay());
+    }
+
+    private Priority getPriorityForCard(CalendarDay calendarDay){
+        List<Task> dayTasks = calendarDay.getTasks();
+
+        int minorTasks = 0;
+        int midTasks = 0;
+        int highTasks = 0;
+
+        for(int i=0;i<dayTasks.size();i++){
+            if(dayTasks.get(i).getPriority() == Priority.HIGH)
+                highTasks++;
+            if(dayTasks.get(i).getPriority() == Priority.MID)
+                midTasks++;
+            if(dayTasks.get(i).getPriority() == Priority.MINOR)
+                minorTasks++;
+        }
+
+        int max = minorTasks;
+        if(midTasks > max)
+            max = midTasks;
+        if(highTasks > max)
+            max = highTasks;
+
+        System.out.println("Max " + max);
+
+        if(max == minorTasks)
+            return Priority.MINOR;
+        if(max == midTasks)
+            return Priority.MID;
+
+        return Priority.HIGH;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+    android:background="#DCDADA"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
@@ -33,7 +34,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/taskPictureIv"
         android:layout_marginStart="16dp"/>
-
-    <
 
 </androidx.constraintlayout.widget.ConstraintLayout>
