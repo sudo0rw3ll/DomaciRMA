@@ -1,6 +1,7 @@
 package com.dvvee.dnevnjakapp.recycler.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.dvvee.dnevnjakapp.R;
+import com.dvvee.dnevnjakapp.model.Priority;
 import com.dvvee.dnevnjakapp.model.Task;
 
 import java.util.function.Consumer;
@@ -29,9 +31,7 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_task, parent, false);
-        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        layoutParams.height = (int) (parent.getHeight() * 0.1666666);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_obligation, parent, false);
         return new ViewHolder(view, parent.getContext(), position -> {
             Task task = getItem(position);
             onTaskClicked.accept(task);
@@ -58,7 +58,16 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.ViewHolder> {
         }
 
         public void bind(Task task){
-            ((TextView) itemView.findViewById(R.id.taskText)).setText(task.getTitle());
+            ((TextView) itemView.findViewById(R.id.taskTitleTextView)).setText(task.getTitle());
+            String startEndHours = String.valueOf(task.getHour()) + ":" + String.valueOf(task.getMinute()) + " - " + String.valueOf(task.getEnd_hour()) + ":" + String.valueOf(task.getEnd_minute());
+            ((TextView) itemView.findViewById(R.id.startEndTextView)).setText(startEndHours);
+
+            if(task.getPriority() == Priority.HIGH)
+                ((ImageView) itemView.findViewById(R.id.taskPictureIv)).setBackgroundColor(Color.RED);
+            if(task.getPriority() == Priority.MID)
+                ((ImageView) itemView.findViewById(R.id.taskPictureIv)).setBackgroundColor(Color.YELLOW);
+            if(task.getPriority() == Priority.MINOR)
+                ((ImageView) itemView.findViewById(R.id.taskPictureIv)).setBackgroundColor(Color.GREEN);
         }
     }
 }

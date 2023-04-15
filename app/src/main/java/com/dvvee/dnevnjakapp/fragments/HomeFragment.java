@@ -10,12 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.dvvee.dnevnjakapp.MainActivity;
 import com.dvvee.dnevnjakapp.R;
 import com.dvvee.dnevnjakapp.model.CalendarDay;
 import com.dvvee.dnevnjakapp.recycler.adapter.CalendarAdapter;
@@ -42,7 +45,6 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private LinearLayout mainLayout;
     private SharedViewModel sharedViewModel;
-    private TaskAdapter taskAdapter;
     private CalendarAdapter calendarAdapter;
 
     private LocalDate selectedDate;
@@ -56,7 +58,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        sharedViewModel = new ViewModelProvider(this).get(SharedViewModel.class);
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         selectedDate = LocalDate.now();
         init(view);
     }
@@ -78,6 +80,12 @@ public class HomeFragment extends Fragment {
         calendarAdapter = new CalendarAdapter(new CalendarDiffItemCallback(), calendarDay -> {
             Toast.makeText(view.getContext(), calendarDay.getDay() + "", Toast.LENGTH_SHORT).show();
             System.out.println(calendarDay.getDate() + "\n" + calendarDay.getTasks().size() + "\n" +calendarDay.getPriority());
+
+            /**ODRADITI LOGIKU ZA PROSLEDJIVANJE OBJEKTA FRAGMENTU I PRIKAZ FRAGMENTA*/
+            sharedViewModel.updateDayToShow(calendarDay);
+            MainActivity mainActivity = ((MainActivity) this.getActivity());
+            mainActivity.switchPage(1);
+
         });
 
         recyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 7));

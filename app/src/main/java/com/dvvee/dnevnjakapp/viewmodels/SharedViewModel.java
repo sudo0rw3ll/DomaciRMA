@@ -38,6 +38,7 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<String> month = new MutableLiveData<>(); // wrapper za string
     private final MutableLiveData<List<Task>> tasks = new MutableLiveData<>();
     private final MutableLiveData<List<CalendarDay>> calendarDays = new MutableLiveData<>();
+    private final MutableLiveData<CalendarDay> dayToShow = new MutableLiveData<>();
 
     private LocalDate selectedDate;
     private Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
@@ -178,6 +179,10 @@ public class SharedViewModel extends ViewModel {
         updatePastList();
     }
 
+    public void updateDayToShow(CalendarDay calendarDay){
+        this.getDayToShow().setValue(calendarDay);
+    }
+
     public MutableLiveData<List<CalendarDay>> getCalendarDays() {
         return calendarDays;
     }
@@ -188,5 +193,9 @@ public class SharedViewModel extends ViewModel {
 
     public MutableLiveData<String> getMonth() {
         return month;
+    }
+
+    public MutableLiveData<CalendarDay> getDayToShow() {
+        return dayToShow;
     }
 }

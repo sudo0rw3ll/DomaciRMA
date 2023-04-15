@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void switchPage(int idx){
+        this.viewPager.setCurrentItem(idx);
+    }
+
     private void initFrag(){
 //        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //        transaction.add(R.id.fragmentContainer, new HomeFragment());
