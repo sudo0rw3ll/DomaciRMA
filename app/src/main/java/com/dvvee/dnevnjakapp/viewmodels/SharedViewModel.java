@@ -80,9 +80,10 @@ public class SharedViewModel extends ViewModel {
             String date = String.valueOf(localDate.getDayOfMonth());
             Priority priority = Priority.MID;
 
-            Task task = new Task(i + localDate.getMonthValue() + localDate.getDayOfMonth(),"task " + i, "description of task " + i, localDate, 20, 20, 21, 0,Priority.MID, 1);
-            tasks.add(task);
-
+            if(i % 5 == 0) {
+                Task task = new Task(i + localDate.getMonthValue() + localDate.getDayOfMonth(), "task " + i, "description of task " + i, localDate, 20, 20, 21, 0, Priority.MID, 1);
+                tasks.add(task);
+            }
 //            List<Task> res = sqLiteManager.getTasksForDate(localDate);
 
             calendarDay.setDate(localDate);

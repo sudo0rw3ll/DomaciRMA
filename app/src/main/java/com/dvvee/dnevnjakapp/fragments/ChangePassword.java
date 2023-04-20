@@ -67,7 +67,7 @@ public class ChangePassword extends Fragment {
                     clean();
                 }
             }else{
-                Toast.makeText(getContext(), "Passwrod must be at least 5 chars long, containing 1 or more upper case letters and one digit", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Password must be at least 5 chars long, containing 1 or more upper case letters and one digit", Toast.LENGTH_LONG).show();
             }
         });
     }

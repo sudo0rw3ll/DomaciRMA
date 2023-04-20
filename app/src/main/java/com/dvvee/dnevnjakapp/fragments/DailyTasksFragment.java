@@ -113,7 +113,7 @@ public class DailyTasksFragment extends Fragment {
         initFilterButtons();
         initSearch();
         initFloating();
-        initShowPastObligations();
+//        initShowPastObligations();
     }
 
     private void initFilterButtons(){
@@ -137,34 +137,34 @@ public class DailyTasksFragment extends Fragment {
         });
     }
 
-    private void initShowPastObligations(){
-        pastObligations.setOnClickListener(v -> {
-            if(pastObligations.isChecked()){
-                Toast.makeText(getContext(), "Heeey", Toast.LENGTH_SHORT).show();
-                List<Task> curr = taskAdapter.getCurrentList();
-                List<Task> copy = new ArrayList<Task>(curr);
-                List<Task> past = getPastObligations();
-                past.addAll(copy);
-
-                List<Task> sorted = past.stream().sorted(Comparator.comparingInt(Task::getHour)).collect(Collectors.toList());
-
-                taskAdapter.submitList(sorted);
-            }else{
-                Toast.makeText(getContext(), "Heeeya", Toast.LENGTH_SHORT).show();
-                List<Task> curr = taskAdapter.getCurrentList();
-                List<Task> copy = new ArrayList<Task>(curr);
-                List<Task> past = getPastObligations();
-
-                copy.removeAll(past);
-
-                List<Task> sorted = copy.stream()
-                        .sorted(Comparator.comparingInt(Task::getHour).thenComparing(Task::getMinute))
-                        .collect(Collectors.toList());
-
-                taskAdapter.submitList(sorted);
-            }
-        });
-    }
+//    private void initShowPastObligations(){
+//        pastObligations.setOnClickListener(v -> {
+//            if(pastObligations.isChecked()){
+//                Toast.makeText(getContext(), "Heeey", Toast.LENGTH_SHORT).show();
+//                List<Task> curr = taskAdapter.getCurrentList();
+//                List<Task> copy = new ArrayList<Task>(curr);
+//                List<Task> past = getPastObligations();
+//                past.addAll(copy);
+//
+//                List<Task> sorted = past.stream().sorted(Comparator.comparingInt(Task::getHour)).collect(Collectors.toList());
+//
+//                taskAdapter.submitList(sorted);
+//            }else{
+//                Toast.makeText(getContext(), "Heeeya", Toast.LENGTH_SHORT).show();
+//                List<Task> curr = taskAdapter.getCurrentList();
+//                List<Task> copy = new ArrayList<Task>(curr);
+//                List<Task> past = getPastObligations();
+//
+//                copy.removeAll(past);
+//
+//                List<Task> sorted = copy.stream()
+//                        .sorted(Comparator.comparingInt(Task::getHour).thenComparing(Task::getMinute))
+//                        .collect(Collectors.toList());
+//
+//                taskAdapter.submitList(sorted);
+//            }
+//        });
+//    }
 
     private List<Task> getPastObligations(){
         Calendar calendar = Calendar.getInstance();

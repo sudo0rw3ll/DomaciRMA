@@ -3,6 +3,7 @@ package com.dvvee.dnevnjakapp.fragments;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.dvvee.dnevnjakapp.MainActivity;
 import com.dvvee.dnevnjakapp.R;
+import com.dvvee.dnevnjakapp.activities.SplashActivity;
 import com.dvvee.dnevnjakapp.db.SQLiteManager;
 import com.dvvee.dnevnjakapp.model.User;
 import com.dvvee.dnevnjakapp.viewmodels.SharedViewModel;
@@ -74,6 +76,9 @@ public class UserProfileFragment extends Fragment {
 
             editor.clear();
             editor.apply();
+
+            Intent intent = new Intent(this.getActivity(), SplashActivity.class);
+            startActivity(intent);
         });
 
         userProfilePic.setOnClickListener(v -> {

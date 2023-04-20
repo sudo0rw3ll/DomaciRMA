@@ -108,7 +108,7 @@ public class EditTaskFragment extends Fragment {
         });
 
         saveButton.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "To be implemented", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "To be implemented", Toast.LENGTH_SHORT).show();
 
             String newTitle = editTaskTitle.getText().toString();
             String newDescription = editTaskDescription.getText().toString();
@@ -144,7 +144,6 @@ public class EditTaskFragment extends Fragment {
     private void clearFields(){
         this.editTaskTitle.setText("");
         this.editTaskDescription.setText("");
-        this.editStartDate.setText("");
         this.editStartTime.setText("");
         this.editEndTime.setText("");
         this.lowPriorityBtn.setChecked(true);
@@ -162,7 +161,6 @@ public class EditTaskFragment extends Fragment {
                 this.task = task;
                 this.editTaskTitle.setText(this.task.getTitle());
                 this.editTaskDescription.setText(this.task.getDescription());
-                this.editStartDate.setText(this.task.getDate().toString());
                 this.editStartTime.setText(String.format("%02d:%02d", this.task.getHour(), this.task.getMinute()));
                 this.editEndTime.setText(String.format("%02d:%02d", this.task.getEnd_hour(), this.task.getEnd_minute()));
 

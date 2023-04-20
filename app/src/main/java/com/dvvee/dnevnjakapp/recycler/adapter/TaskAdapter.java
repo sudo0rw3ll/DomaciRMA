@@ -73,7 +73,7 @@ public class TaskAdapter extends ListAdapter<Task, TaskAdapter.ViewHolder> {
         holder.itemView.findViewById(R.id.editTaskIv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "HEJ EDIT", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(v.getContext(), "HEJ EDIT", Toast.LENGTH_SHORT).show();
                 sharedViewModel.getTask().setValue(task);
                 MainActivity mainActivity = (MainActivity) v.getContext();
                 mainActivity.switchPage(4);
