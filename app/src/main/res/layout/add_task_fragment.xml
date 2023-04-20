@@ -10,7 +10,7 @@
         android:paddingTop="60dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/editTaskMessage"
+        android:text="@string/addNewTaskMessage"
         android:textSize="25sp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
@@ -38,7 +38,7 @@
                 android:textColor="#000000"/>
 
             <EditText
-                android:id="@+id/edit_task_title"
+                android:id="@+id/new_task_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/editTaskTitle"
@@ -56,7 +56,7 @@
                 android:textColor="#000000"/>
 
             <EditText
-                android:id="@+id/edit_task_description"
+                android:id="@+id/new_task_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/editTaskDescription"
@@ -68,13 +68,13 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/selectTaskStartTime"
+                android:text="@string/editTaskStartTime"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="#000000"/>
 
             <EditText
-                android:id="@+id/edit_start_time"
+                android:id="@+id/new_start_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/selectTaskStartTime"
@@ -91,7 +91,7 @@
                 android:textColor="#000000"/>
 
             <EditText
-                android:id="@+id/edit_end_time"
+                android:id="@+id/new_end_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/selectTaskendtime"
@@ -115,7 +115,7 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/priority_low"
+                    android:id="@+id/new_priority_low"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/priorityLow"
@@ -124,7 +124,7 @@
                     android:textColor="#000000"/>
 
                 <RadioButton
-                    android:id="@+id/priority_medium"
+                    android:id="@+id/new_priority_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/priorityMid"
@@ -133,7 +133,7 @@
                     android:textColor="#000000"/>
 
                 <RadioButton
-                    android:id="@+id/priority_high"
+                    android:id="@+id/new_priority_high"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/priorityHigh"
@@ -143,10 +143,10 @@
 
             </RadioGroup>
             <Button
-                android:id="@+id/saveBtn"
+                android:id="@+id/addBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/editSaveButton"
+                android:text="@string/addNewTaskButton"
                 android:backgroundTint="@color/login_blue"
                 android:layout_gravity="center"
                 android:layout_marginTop="60dp"/>

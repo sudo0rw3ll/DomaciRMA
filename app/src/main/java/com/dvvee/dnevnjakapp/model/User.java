@@ -1,14 +1,17 @@
 package com.dvvee.dnevnjakapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
-    private Long id;
+    private int id;
     private String email;
     private String username;
     private String password;
     private String imageLink;
 
-    public User(Long id, String email, String username, String password, String imageLink){
+    public User(int id, String email, String username, String password, String imageLink){
         this.id = id;
         this.email = email;
         this.username = username;
@@ -48,11 +51,11 @@ public class User {
         this.imageLink = imageLink;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

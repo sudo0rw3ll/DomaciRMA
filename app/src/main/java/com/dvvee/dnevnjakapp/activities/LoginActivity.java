@@ -1,8 +1,10 @@
-package com.dvvee.dnevnjakapp;
+package com.dvvee.dnevnjakapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.dvvee.dnevnjakapp.R;
 
 public class LoginActivity extends AppCompatActivity {
 

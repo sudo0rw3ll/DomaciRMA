@@ -1,9 +1,14 @@
 package com.dvvee.dnevnjakapp.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class Task {
+public class Task implements Serializable {
 
+    public static ArrayList<Task> taskArrayList = new ArrayList<>();
+
+    private int id;
     private String title;
     private String description;
     private LocalDate date;
@@ -12,8 +17,10 @@ public class Task {
     private int start_minute;
     private int end_hour;
     private int end_minute;
+    private int userID;
 
-    public Task(String title, String description, LocalDate date, int start_hour, int start_minute, int end_hour, int end_minute, Priority priority){
+    public Task(int id,String title, String description, LocalDate date, int start_hour, int start_minute, int end_hour, int end_minute, Priority priority, int userID){
+        this.id = id;
         this.title = title;
         this.description = description;
         this.date = date;
@@ -22,6 +29,16 @@ public class Task {
         this.priority = priority;
         this.end_hour = end_hour;
         this.end_minute = end_minute;
+        this.userID = userID;
+    }
+
+    public static Task getTaskForId(int taskId){
+        for(Task task : taskArrayList){
+            if(task.getId() == taskId)
+                return task;
+        }
+
+        return null;
     }
 
     public String getTitle() {
@@ -86,5 +103,21 @@ public class Task {
 
     public void setEnd_minute(int end_minute) {
         this.end_minute = end_minute;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
 }

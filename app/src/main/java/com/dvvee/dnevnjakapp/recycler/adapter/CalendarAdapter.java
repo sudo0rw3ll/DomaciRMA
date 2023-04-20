@@ -65,6 +65,9 @@ public class CalendarAdapter extends ListAdapter<CalendarDay, CalendarAdapter.Vi
         int midTasks = 0;
         int highTasks = 0;
 
+        if(dayTasks.size() == 0)
+            return null;
+
         for(int i=0;i<dayTasks.size();i++){
             if(dayTasks.get(i).getPriority() == Priority.HIGH)
                 highTasks++;
@@ -74,7 +77,8 @@ public class CalendarAdapter extends ListAdapter<CalendarDay, CalendarAdapter.Vi
                 minorTasks++;
         }
 
-        int max = minorTasks;
+        int max = -1;
+
         if(midTasks > max)
             max = midTasks;
         if(highTasks > max)

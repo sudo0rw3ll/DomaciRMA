@@ -1,11 +1,18 @@
 package com.dvvee.dnevnjakapp.viewmodels;
 
+import android.app.Application;
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.dvvee.dnevnjakapp.activities.DetailsActivity;
+import com.dvvee.dnevnjakapp.db.SQLiteManager;
 import com.dvvee.dnevnjakapp.model.CalendarDay;
 import com.dvvee.dnevnjakapp.model.Priority;
 import com.dvvee.dnevnjakapp.model.Task;
+import com.dvvee.dnevnjakapp.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.Reader;
@@ -39,9 +46,10 @@ public class SharedViewModel extends ViewModel {
     private final MutableLiveData<List<Task>> tasks = new MutableLiveData<>();
     private final MutableLiveData<List<CalendarDay>> calendarDays = new MutableLiveData<>();
     private final MutableLiveData<CalendarDay> dayToShow = new MutableLiveData<>();
+    private final MutableLiveData<Task> task = new MutableLiveData<>();
+    private final MutableLiveData<User> user = new MutableLiveData<>();
 
     private LocalDate selectedDate;
-    private Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
 
     public SharedViewModel(){
         this.selectedDate = LocalDate.now();
@@ -54,9 +62,8 @@ public class SharedViewModel extends ViewModel {
         list.addAll(getDaysToFillFirst(LocalDate.now()));
         list.addAll(getDaysForMonth(LocalDate.now()));
         list.addAll(getDaysToFillLast(LocalDate.now()));
-
+        this.month.setValue(YearMonth.from(selectedDate).toString());
         ArrayList<CalendarDay> listCalendar = list;
-        System.out.println(listCalendar);
         this.calendarDays.setValue(listCalendar);
     }
 
@@ -66,20 +73,22 @@ public class SharedViewModel extends ViewModel {
         LocalDate firstOfMonth = currMonth.with(TemporalAdjusters.firstDayOfMonth());
 
         for(int i=0;i<currMonth.lengthOfMonth();i++){
-            ArrayList<Task> newL = new ArrayList<Task>();
+            List<Task> tasks = new ArrayList<>();
             CalendarDay calendarDay = new CalendarDay();
 
             LocalDate localDate = firstOfMonth.plusDays(i);
             String date = String.valueOf(localDate.getDayOfMonth());
             Priority priority = Priority.MID;
 
-            Task task = new Task("task " + i, "description of task " + i, localDate, 20, 20, 21, 0,Priority.MID);
-            newL.add(task);
+            Task task = new Task(i + localDate.getMonthValue() + localDate.getDayOfMonth(),"task " + i, "description of task " + i, localDate, 20, 20, 21, 0,Priority.MID, 1);
+            tasks.add(task);
+
+//            List<Task> res = sqLiteManager.getTasksForDate(localDate);
 
             calendarDay.setDate(localDate);
             calendarDay.setDay(date);
             calendarDay.setPriority(priority);
-            calendarDay.setTasks(newL);
+            calendarDay.setTasks(tasks);
 
             dates.add(calendarDay);
         }
@@ -183,6 +192,22 @@ public class SharedViewModel extends ViewModel {
         this.getDayToShow().setValue(calendarDay);
     }
 
+    public void deleteTask(Task task){
+        for(int i=0;i<this.calendarDays.getValue().size();i++){
+            if(this.calendarDays.getValue().get(i).getDate().equals(task.getDate())){
+                this.calendarDays.getValue().get(i).getTasks().remove(task);
+            }
+        }
+
+        if(this.dayToShow != null){
+            dayToShow.getValue().getTasks().remove(task);
+        }
+    }
+
+    public void deleteTaskForCurr(Task task){
+        this.dayToShow.getValue().getTasks().remove(task);
+    }
+
     public MutableLiveData<List<CalendarDay>> getCalendarDays() {
         return calendarDays;
     }
@@ -197,5 +222,13 @@ public class SharedViewModel extends ViewModel {
 
     public MutableLiveData<CalendarDay> getDayToShow() {
         return dayToShow;
+    }
+
+    public MutableLiveData<Task> getTask() {
+        return task;
+    }
+
+    public MutableLiveData<User> getUser() {
+        return user;
     }
 }

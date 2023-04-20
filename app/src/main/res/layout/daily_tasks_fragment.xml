@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="wrap_content"
-            android:text="Current date"
+            android:text="@string/currDatePlaceholder"
             android:textSize="20sp"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -36,10 +36,10 @@
         android:gravity="center">
 
         <EditText
-            android:id="@+id/usernameInputField"
+            android:id="@+id/searchTasksEditText"
             android:layout_width="350dp"
             android:layout_height="45dp"
-            android:hint="Search obligations"
+            android:hint="@string/searchObligations"
             android:background="@drawable/custom_edittext"
             android:drawableStart="@drawable/ic_baseline_search_24"
             android:drawablePadding="10dp"
@@ -60,7 +60,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MINOR"
+            android:text="@string/priorityLow"
             android:backgroundTint="#7BBF37"
             android:id="@+id/minorButton"
             />
@@ -68,7 +68,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MEDIUM"
+            android:text="@string/priorityMid"
             android:backgroundTint="#A8A614"
             android:id="@+id/midButton"
             />
@@ -76,7 +76,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HIGH"
+            android:text="@string/priorityHigh"
             android:backgroundTint="#E8044C"
             android:id="@+id/highButton"
             />
@@ -93,7 +93,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Show past obligations"
+            android:text="@string/showPastObligations"
             android:textSize="16sp"
             android:textColor="@color/black"/>
 

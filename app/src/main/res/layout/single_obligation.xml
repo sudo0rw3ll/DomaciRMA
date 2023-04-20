@@ -23,14 +23,14 @@
         app:layout_constraintStart_toEndOf="@+id/taskPictureIv"
         app:layout_constraintBottom_toTopOf="@+id/startEndTextView"
         android:layout_marginStart="16dp"
-        android:text="TITLE PLACEHOLDER"
+        android:text="@string/titlePlaceholder"
         android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/startEndTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="START - END HRS"
+        android:text="@string/startEndHrs"
         app:layout_constraintTop_toBottomOf="@+id/taskTitleTextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/taskPictureIv"
@@ -38,8 +38,8 @@
 
     <ImageView
         android:id="@+id/deleteTaskIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_baseline_delete_24"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,13 +49,15 @@
 
     <ImageView
         android:id="@+id/editTaskIv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_baseline_edit_24"
         app:layout_constraintTop_toBottomOf="@+id/deleteTaskIv"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:paddingBottom="30dp"
         android:paddingRight="10dp"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

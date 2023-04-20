@@ -38,6 +38,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -48,8 +49,6 @@ public class HomeFragment extends Fragment {
     private CalendarAdapter calendarAdapter;
 
     private LocalDate selectedDate;
-
-    private int pos = 0;
 
     public HomeFragment(){
         super(R.layout.home_fragment);
@@ -67,7 +66,6 @@ public class HomeFragment extends Fragment {
         initView(view);
         initRecycler(view);
         initObservers();
-        readJSON("adsa");
     }
 
     private void initView(View view){
@@ -81,7 +79,6 @@ public class HomeFragment extends Fragment {
             Toast.makeText(view.getContext(), calendarDay.getDay() + "", Toast.LENGTH_SHORT).show();
             System.out.println(calendarDay.getDate() + "\n" + calendarDay.getTasks().size() + "\n" +calendarDay.getPriority());
 
-            /**ODRADITI LOGIKU ZA PROSLEDJIVANJE OBJEKTA FRAGMENTU I PRIKAZ FRAGMENTA*/
             sharedViewModel.updateDayToShow(calendarDay);
             MainActivity mainActivity = ((MainActivity) this.getActivity());
             mainActivity.switchPage(1);
@@ -107,6 +104,34 @@ public class HomeFragment extends Fragment {
             }
         });
 
+//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+//                super.onScrolled(recyclerView, dx, dy);
+//
+//                GridLayoutManager gridLayoutManager = (GridLayoutManager) recyclerView.getLayoutManager();
+//
+//                int firstVisible = gridLayoutManager.findFirstVisibleItemPosition();
+//                int lastVisible = gridLayoutManager.findLastVisibleItemPosition();
+//
+//                if(firstVisible >= 0 && lastVisible >= 0){
+//                    CalendarDay calendarDayF = calendarAdapter.getCurrentList().get(firstVisible);
+//                    CalendarDay calendarDayL = calendarAdapter.getCurrentList().get(lastVisible);
+//
+//                    System.out.println("CF " + calendarDayF.getDate());
+//                    System.out.println("CL " + calendarDayL.getDate());
+//
+//                    if(calendarDayF.getDate().getDayOfMonth() < 10){
+//                        sharedViewModel.updateUp();
+//                    }
+//
+//                    if(calendarDayL.getDate().getDayOfMonth() > 25){
+//                        sharedViewModel.updateDown();
+//                    }
+//                }
+//            }
+//        });
+
         recyclerView.setAdapter(calendarAdapter);
     }
 
@@ -118,19 +143,5 @@ public class HomeFragment extends Fragment {
         sharedViewModel.getMonth().observe(getViewLifecycleOwner(), month -> {
             ((TextView) getView().findViewById(R.id.monthBanner)).setText(month);
         });
-    }
-
-    private void readJSON(String path){
-        try{
-            ObjectMapper mapper = new ObjectMapper();
-
-            InputStream in = this.getContext().getAssets().open("data.json");
-
-            List<CalendarDay> calendarDays = Arrays.asList(mapper.readValue(in, CalendarDay[].class));
-
-            calendarDays.forEach(System.out::println);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 }
